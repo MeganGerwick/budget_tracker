@@ -20,7 +20,7 @@ THis is a simple budget that app that allows users to add expenses and deposits 
 To see the working application, visit https://budget-tracker-mger.herokuapp.com/.
 
 ## Screenshots of Application
-
+![budget tracker](https://user-images.githubusercontent.com/69534417/107714360-c02afd80-6c92-11eb-988c-50e2d4a8dc80.PNG)
 
 ## Contact Information
 If you have questions about this repository, contact Megan Gerwick at https://github.com/MeganGerwick or email at mgerwick@gmail.com.
