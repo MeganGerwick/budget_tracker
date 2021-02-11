@@ -15,8 +15,10 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://mgerwick:mniAL-14@cluster0.kmz3u.mongodb.net/budget?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://localhost/budget-tracker-mger", {
   useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
   useFindAndModify: false
 });
 
