@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "web": "npm run wstart",
     "lite-server": "lite-server"
   },
   "repository": {
