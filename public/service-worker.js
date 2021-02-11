@@ -5,7 +5,7 @@ const FILES_TO_CACHE = [
     'index.js',
     '/icons/icon-192x192.png',
     'icons/icon-512x512.png',
-    'syles.css'
+    'styles.css'
 ];
 
 const CACHE_NAME = 'static-cache-v2'
@@ -41,7 +41,7 @@ self.addEventListener("activate", function (evt) {
 
 //fetch
 self.addEventListener("fetch", function (evt) {
-    if (evt.request.url.includes("/transactions/")) {
+    if (evt.request.url.match("/transactions/")) {
         evt.respondWith(
             caches.open(DATA_CACHE_NAME).then(cache => {
                 return fetch(evt.request)
@@ -56,14 +56,20 @@ self.addEventListener("fetch", function (evt) {
                     });
             }).catch(err => console.log(err))
         );
-        return;
-    } else {
+    } if (evt.request.url.match("/transactions/bulk")) {
         evt.respondWith(
-            caches.open(CACHE_NAME).then(cache => {
-                return cache.match(evt.request).then(response => {
-                    return response || fetch(evt.request);
-                });
-            })
+            caches.open(DATA_CACHE_NAME).then(cache => {
+                return fetch(evt.request)
+                    .then(response => {
+                        if (response.status === 200) {
+                            cache.put(evt.request.url, response.clone());
+                        }
+                        return response;
+                    })
+                    .catch(err => {
+                        return cache.match(evt.request);
+                    });
+            }).catch(err => console.log(err))
         );
     }
 
